@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Light Theme */
+  --color-primary: #FF4500; /* Orange */
+  --color-secondary: #000000; /* Black */
+  --color-accent: #000000; /* Black */
+  --color-background: #FFFFFF; /* White */
+  --color-text: #000000; /* Black */
+}
+
+.dark {
+  /* Dark Theme */
+  --color-primary: #FF4500; /* Orange */
+  --color-secondary: #FFFFFF; /* White */
+  --color-accent: #00FF00; /* Green (Atari-like) */
+  --color-background: #000000; /* Black */
+  --color-text: #FFFFFF; /* White */
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text);
+  font-family: 'Space Mono', monospace;
+  font-size: 16px;
+  line-height: 1.5;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
