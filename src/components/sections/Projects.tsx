@@ -5,8 +5,8 @@ const Projects = () => {
   return (
     <section id="projects" className="mb-8">
       <h2 className="text-3xl font-bold mb-4 text-primary">projects</h2>
-      <div className="flex justify-center mb-4">
-        <DynamicAsciiArt type="circle" />
+      <div className="flex justify-center mb-6">
+        <DynamicAsciiArt type="projects" />
       </div>
       <div className="space-y-6 text-text">
         <div>

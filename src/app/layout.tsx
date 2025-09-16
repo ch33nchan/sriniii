@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { ThemeProvider } from '../context/ThemeContext';
 import ThemeBody from '../components/ThemeBody';
+import InteractiveTerminal from '../components/InteractiveTerminal';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: "Srini - Personal Website",
-  description: "Srini's personal website, showcasing his work in Machine Learning and Robotics.",
+  title: "srini.terminal - hacker portfolio",
+  description: "srinivas' terminal-style portfolio | machine learning engineer & robotics researcher",
 };
 
 export default function RootLayout({
@@ -16,32 +16,53 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <ThemeProvider>
         <ThemeBody>
-          <nav className="fixed top-0 left-0 w-full bg-background z-10 p-4 border-b border-primary">
-            <ul className="flex justify-center space-x-8 text-lg">
-              <li><Link href="/" className="hover:text-primary">bio</Link></li>
-              <li><Link href="/skills" className="hover:text-primary">skills</Link></li>
-              <li><Link href="/experience" className="hover:text-primary">experience</Link></li>
-              <li><Link href="/projects" className="hover:text-primary">projects</Link></li>
-              <li><Link href="/contact" className="hover:text-primary">contact</Link></li>
-              <li><Link href="/ads" className="hover:text-primary">ads</Link></li>
-            </ul>
+          <nav className="fixed top-0 left-0 w-full bg-background/95 backdrop-blur-sm z-50 p-4 border-b border-border">
+            <div className="max-w-6xl mx-auto">
+              <div className="flex justify-between items-center">
+                <div className="text-primary font-mono font-bold text-lg">
+                  srini
+                </div>
+                <ul className="flex space-x-6 text-sm font-mono">
+                  <li>
+                    <Link href="/" className="text-primary hover:text-secondary transition-colors">
+                      bio
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/skills" className="text-primary hover:text-secondary transition-colors">
+                      skills
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/experience" className="text-primary hover:text-secondary transition-colors">
+                      experience
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/projects" className="text-primary hover:text-secondary transition-colors">
+                      projects
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/contact" className="text-primary hover:text-secondary transition-colors">
+                      contact
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/scholar" className="text-primary hover:text-secondary transition-colors">
+                      scholar
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </nav>
-          {children}
+          <div className="pt-20 pb-32">
+            {children}
+          </div>
+          <InteractiveTerminal />
         </ThemeBody>
-      </ThemeProvider>
-    <script>
-            if ('serviceWorker' in navigator) {
-              window.addEventListener('load', function() {
-                navigator.serviceWorker.register('/sw.js').then(function(registration) {
-                  console.log('ServiceWorker registration successful with scope: ', registration.scope);
-                }, function(err) {
-                  console.log('ServiceWorker registration failed: ', err);
-                });
-              });
-            }
-          </script>
     </html>
   );
 }
