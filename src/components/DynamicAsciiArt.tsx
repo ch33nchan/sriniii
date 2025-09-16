@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 
 interface DynamicAsciiArtProps {
-  type: 'skills' | 'projects' | 'loading' | 'matrix';
+  type: 'skills' | 'projects' | 'loading' | 'matrix' | 'dancing-name';
 }
 
 const asciiFrames = {
@@ -116,6 +116,20 @@ const asciiFrames = {
    ╚═══════════╝
     `,
   ],
+  'dancing-name': [
+    `\\o/  \\o/  \\o/  \\o/  \\o/    playing around...`,
+    `/o\\   o   /o\\   o   /o\\     passing the ball ●`,
+    `\\o/  /o\\  \\o/  /o\\  \\o/    toss toss! ●`,
+    ` o    o  ● o    o    o     catch! someone dropped it`,
+    `\\o/   |  \\o/   |   \\o/     jumping for the ball!`,
+    ` |  ● /|\\  |   /|\\   |     pile up! everyone wants it`,
+    `\\o/  \\o/  \\o/  \\o/  \\o/    teamwork time!`,
+    ` s    r    i    n    i     let's spell something...`,
+    `\\s/  \\r/  \\i/  \\n/  \\i/    srini! ta-da!`,
+    `/s\\  /r\\  /i\\  /n\\  /i\\    we did it! bow time`,
+    ` s    r    i    n    i     final pose ✨`,
+    `\\o/  \\o/  \\o/  \\o/  \\o/    ready for another game?`,
+  ],
 };
 
 const DynamicAsciiArt: React.FC<DynamicAsciiArtProps> = ({ type }) => {
@@ -139,32 +153,32 @@ const DynamicAsciiArt: React.FC<DynamicAsciiArtProps> = ({ type }) => {
       setCurrentFrameIndex((prevIndex) => {
         const nextIndex = (prevIndex + 1) % totalFrames;
         
-        // For skills and projects, pause on the last frame
-        if ((type === 'skills' || type === 'projects') && nextIndex === totalFrames - 1) {
+        // For skills, projects, and dancing-name, pause on the last frame
+        if ((type === 'skills' || type === 'projects' || type === 'dancing-name') && nextIndex === totalFrames - 1) {
           setHasCompleted(true);
         }
         
         return nextIndex;
       });
-    }, type === 'loading' ? 200 : type === 'matrix' ? 800 : type === 'skills' ? 800 : 600);
+    }, type === 'loading' ? 200 : type === 'matrix' ? 800 : type === 'skills' ? 800 : type === 'dancing-name' ? 700 : 600);
 
     return () => clearInterval(interval);
   }, [type, frames.length]);
 
-  // For skills and projects, show the completion frame longer
+  // For skills, projects, and dancing-name, show the completion frame longer
   useEffect(() => {
-    if (hasCompleted && (type === 'skills' || type === 'projects')) {
+    if (hasCompleted && (type === 'skills' || type === 'projects' || type === 'dancing-name')) {
       const timeout = setTimeout(() => {
         setCurrentFrameIndex(0);
         setHasCompleted(false);
-      }, 3000); // Show completion for 3 seconds
+      }, type === 'dancing-name' ? 2000 : 3000); // Dancing name restarts faster
       
       return () => clearTimeout(timeout);
     }
   }, [hasCompleted, type]);
 
   return (
-    <pre className="text-primary text-xs leading-tight font-mono">
+    <pre className={`text-primary leading-tight font-mono ${type === 'dancing-name' ? 'text-xs' : 'text-xs'}`}>
       {frames[Math.min(currentFrameIndex, frames.length - 1)] || frames[0]}
     </pre>
   );

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import ThemeBody from '../components/ThemeBody';
 import InteractiveTerminal from '../components/InteractiveTerminal';
+import DynamicAsciiArt from '../components/DynamicAsciiArt';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
@@ -20,8 +21,8 @@ export default function RootLayout({
           <nav className="fixed top-0 left-0 w-full bg-background/95 backdrop-blur-sm z-50 p-4 border-b border-border">
             <div className="max-w-6xl mx-auto">
               <div className="flex justify-between items-center">
-                <div className="text-primary font-mono font-bold text-lg">
-                  srini
+                <div className="text-primary font-mono font-bold text-xs">
+                  <DynamicAsciiArt type="dancing-name" />
                 </div>
                 <ul className="flex space-x-6 text-sm font-mono">
                   <li>
